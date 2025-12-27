@@ -60,6 +60,7 @@ const defaultColDef = {
   const [activeView, setActiveView] = useState('dashboard');
   const [userData, setUserData] = useState();
   const [clicked, setClicked] = useState();
+  const [totalCount, setTotalCount] = useState();
 
 
   // Temporary commet
@@ -108,7 +109,7 @@ const defaultColDef = {
             const result = await response.json();
             const {status, data, stats} = result;
 
-            console.log(stats);
+            setTotalCount(stats)
 
             if(status){
 
@@ -129,7 +130,7 @@ const defaultColDef = {
                     "Preferred College Location": item.collegeLocation,
                     "Given Any Entrance Exam?" : item.exam,
                     "Come With Your Group Of Friends":  item.friend,
-                    "Friend's Name and Phone Number": item.allFriendsDetails,
+                    "Friend's Name and Phone Number": item.allFriendsDetails.length > 0? item.allFriendsDetails.map((info) => `${info.name}-${info.phone}  || `) : null,
                     "Attendence For The Event": item.attendence,
                     "Planning MBA or Scholarship": item.planScholarship,
                     "Seminar Expert" : item.seminarExpert,
@@ -382,6 +383,15 @@ const defaultColDef = {
         </nav>
 
 
+        {/* <div>
+          <p>Register Student: <span>${totalCount.noRegisterUser}</span> </p>
+          <p>Uploaded Student: <span>${totalCount.noUploadUser}</span></p>
+          <p>Direct Pass Student: <span>${totalCount.noForceUser}</span></p>
+          <p>Total</p>
+
+        </div> */}
+
+
 
         <div className="absolute bottom-0 w-64 p-4  border-t border-gray-700">
            <div  
@@ -435,7 +445,7 @@ const defaultColDef = {
 
             <div
                 className="overflow-auto"
-                style={{ width: "100%", height: "500px" }}
+                style={{ width: "100%", height: "100%" }}
               >
                 <AgGridReact
                   rowData={rowData}
