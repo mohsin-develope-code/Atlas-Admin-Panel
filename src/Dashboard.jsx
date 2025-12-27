@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react'
-import * as XLSX from "xlsx";
-import { Plus, Edit2, Trash2, Save, X, Tag, Menu, Home, List, FileText, LogOut } from 'lucide-react';
+import { X, Menu, Home, LogOut } from 'lucide-react';
 import {useNavigate} from 'react-router-dom';
+import {BASE_URL} from './Base-Url'
 
 
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
@@ -62,23 +62,23 @@ const defaultColDef = {
   const [clicked, setClicked] = useState();
 
 
-
+  // Temporary commet
   //Convert JSON data into excel sheet data
-  function downloadExcelFromJson(data, filename = "alumni.xlsx"){
+  // function downloadExcelFromJson(data, filename = "alumni.xlsx"){
    
-    if (!data || !data.length) {
-    alert("No data to export");
-    return;
-    }
+  //   if (!data || !data.length) {
+  //   alert("No data to export");
+  //   return;
+  //   }
 
-    const worksheet = XLSX.utils.json_to_sheet(data);
+  //   const worksheet = XLSX.utils.json_to_sheet(data);
 
-     const workbook = XLSX.utils.book_new();
-     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+  //    const workbook = XLSX.utils.book_new();
+  //    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
-     // Write and trigger download in browser
-     XLSX.writeFile(workbook, filename);
-  }
+  //    // Write and trigger download in browser
+  //    XLSX.writeFile(workbook, filename);
+  // }
 
 
 
@@ -97,7 +97,7 @@ const defaultColDef = {
 
       async function dataGet(){
     try {
-      const response = await fetch('http://localhost:8000/api/admin/reg-user',{
+      const response = await fetch(`${BASE_URL}/api/admin/reg-user`,{
                                     method: 'GET',
                                     credentials: "include",
                                     headers: {
@@ -106,9 +106,9 @@ const defaultColDef = {
                                   })
 
             const result = await response.json();
-            const {status, data} = result;
+            const {status, data, stats} = result;
 
-            console.log(data);
+            console.log(stats);
 
             if(status){
 
@@ -166,7 +166,7 @@ const defaultColDef = {
     console.log("Get Upload API Call")
 
     try {
-      const response = await fetch('http://localhost:8000/api/admin/upload-user',{
+      const response = await fetch(`${BASE_URL}/api/admin/upload-user`,{
                                     method: 'GET',
                                     credentials: "include",
                                     headers: {
@@ -227,7 +227,7 @@ const defaultColDef = {
     console.log("Get Force API Call")
 
     try {
-      const response = await fetch('http://localhost:8000/api/admin/force-user',{
+      const response = await fetch(`${BASE_URL}/api/admin/force-user`,{
                                     method: 'GET',
                                     credentials: "include",
                                     headers: {
@@ -284,7 +284,7 @@ const defaultColDef = {
       console.log("clicked logout button..")
       
     
-      const res = await fetch('https://api.ultimatejaipurians.in/admin/logout',
+      const res = await fetch(`${BASE_URL}/admin/logout`,
                             {
                               method: 'GET',
                               credentials: "include",
