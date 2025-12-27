@@ -60,7 +60,10 @@ const defaultColDef = {
   const [activeView, setActiveView] = useState('dashboard');
   const [userData, setUserData] = useState();
   const [clicked, setClicked] = useState();
-  const [totalCount, setTotalCount] = useState();
+
+  const [regUser, setRegUser] = useState();
+  const [uploadUser, setUploadUser] = useState();
+  const [forceUser, setForceUser] = useState();
 
 
   // Temporary commet
@@ -109,7 +112,9 @@ const defaultColDef = {
             const result = await response.json();
             const {status, data, stats} = result;
 
-            setTotalCount(stats)
+             setRegUser(stats.noRegisterUser)
+             setUploadUser(stats.noUploadUser)
+             setForceUser(stats.noForceUser)
 
             if(status){
 
@@ -382,14 +387,16 @@ const defaultColDef = {
           </ul>
         </nav>
 
+      
 
-        {/* <div>
-          <p>Register Student: <span>${totalCount.noRegisterUser}</span> </p>
-          <p>Uploaded Student: <span>${totalCount.noUploadUser}</span></p>
-          <p>Direct Pass Student: <span>${totalCount.noForceUser}</span></p>
-          <p>Total</p>
+         
 
-        </div> */}
+        <div className='h-full mt-auto text-gray-100 p-10'> 
+          <p className='text-gray-400 py-1'>Register Student: <span className='font-bold'>{regUser}</span> </p>
+          <p className='text-gray-400 py-1'>Uploaded Student: <span className='font-bold'>{uploadUser}</span></p>
+          <p className='text-gray-400 py-1'>Direct Pass Student: <span className='font-bold'>{forceUser}</span></p>
+          <p className='text-gray-400 py-1'>Total: {regUser + uploadUser + forceUser }</p>
+        </div>
 
 
 
