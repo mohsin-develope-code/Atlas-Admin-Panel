@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useMemo} from 'react'
 import { X, Menu, Home, LogOut } from 'lucide-react';
 import {useNavigate} from 'react-router-dom';
 import {BASE_URL} from './Base-Url'
@@ -33,8 +33,10 @@ const Dashboard = () => {
       { field: "Come With Your Group Of Friends" },
       { field: "Friend's Name and Phone Number" },
       { field: "Attendence For The Event" },
-      {field: "Planning MBA or Scholarship"},
-      { field: "Seminar Expert"}
+      { field: "Planning MBA or Scholarship"},
+      { field: "Seminar Expert"},
+      { field: "Date"},
+      { field: "Time"},
     ]);
 
 const defaultColDef = {
@@ -115,6 +117,7 @@ const defaultColDef = {
              setRegUser(stats.noRegisterUser)
              setUploadUser(stats.noUploadUser)
              setForceUser(stats.noForceUser)
+             console.log(data)
 
             if(status){
 
@@ -139,6 +142,8 @@ const defaultColDef = {
                     "Attendence For The Event": item.attendence,
                     "Planning MBA or Scholarship": item.planScholarship,
                     "Seminar Expert" : item.seminarExpert,
+                    "Date" : new Date(item.updatedAt),
+                    "Time" : new Date(item.updatedAt).toLocaleTimeString(),
 
 
 
@@ -458,6 +463,10 @@ const defaultColDef = {
                   rowData={rowData}
                   columnDefs={colDefs}
                   defaultColDef={defaultColDef}
+                  enableCellTextSelection={true}
+                  suppressClipboardPaste={false}
+                  suppressCopyRowsToClipboard={false}
+                  
                   
                 />
             </div>
