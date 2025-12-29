@@ -260,6 +260,8 @@ const defaultColDef = {
                   {
                     "Name": item.name, 
                     "Phone": item.phone,
+                    "Date" : new Date(item.updatedAt),
+                    "Time" : new Date(item.updatedAt).toLocaleTimeString(),
                   }]
               })
 
