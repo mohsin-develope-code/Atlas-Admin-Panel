@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo} from 'react'
+import React, { useState, useEffect} from 'react'
 import { X, Menu, Home, LogOut } from 'lucide-react';
 import {useNavigate} from 'react-router-dom';
 import {BASE_URL} from './Base-Url'
@@ -105,9 +105,9 @@ const defaultColDef = {
     try {
       const response = await fetch(`${BASE_URL}/api/admin/reg-user`,{
                                     method: 'GET',
-                                    credentials: "include",
+                                    // credentials: "include",
                                     headers: {
-                                    Authorization: "Bearer "+localStorage.getItem("token"),
+                                    // Authorization: "Bearer "+localStorage.getItem("token"),
                                     "Content-Type" : "application/json"}
                                   })
 
@@ -165,7 +165,7 @@ const defaultColDef = {
             }
 
     } catch (error) {
-      alert('Network Error, Something is wrong')
+      alert('Network Error, Something is wrong', error)
     }
   }
 
@@ -179,9 +179,9 @@ const defaultColDef = {
     try {
       const response = await fetch(`${BASE_URL}/api/admin/upload-user`,{
                                     method: 'GET',
-                                    credentials: "include",
+                                    // credentials: "include",
                                     headers: {
-                                    Authorization: "Bearer "+localStorage.getItem("token"),
+                                    // Authorization: "Bearer "+localStorage.getItem("token"),
                                     "Content-Type" : "application/json"}
                                   })
 
@@ -227,7 +227,7 @@ const defaultColDef = {
             }
 
     } catch (error) {
-      alert('Network Error, Something is wrong')
+      alert('Network Error, Something is wrong', error)
     }
   }
 
@@ -240,9 +240,9 @@ const defaultColDef = {
     try {
       const response = await fetch(`${BASE_URL}/api/admin/force-user`,{
                                     method: 'GET',
-                                    credentials: "include",
+                                    // credentials: "include",
                                     headers: {
-                                    Authorization: "Bearer "+localStorage.getItem("token"),
+                                    // Authorization: "Bearer "+localStorage.getItem("token"),
                                     "Content-Type" : "application/json"}
                                   })
 
@@ -277,7 +277,7 @@ const defaultColDef = {
             }
 
     } catch (error) {
-      alert('Network Error, Something is wrong')
+      alert('Network Error, Something is wrong', error)
     }
   }
 
@@ -300,9 +300,9 @@ const defaultColDef = {
       const res = await fetch(`${BASE_URL}/admin/logout`,
                             {
                               method: 'GET',
-                              credentials: "include",
+                              // credentials: "include",
                               headers: {
-                                  Authorization: "Bearer "+localStorage.getItem("token"),
+                                  // Authorization: "Bearer "+localStorage.getItem("token"),
                                   "Content-Type" : "application/json"
                                 }
                               

@@ -49,7 +49,7 @@ const Login = () => {
                                                         password: formData.password
                                                         }),
                                      
-                                     credentials: "include",
+                                    //  credentials: "include",
                                      headers: {"Content-Type" : "application/json"}
         })
 
@@ -60,6 +60,8 @@ const Login = () => {
             localStorage.setItem('token', token)
             localStorage.setItem('login', true)
             navigate('/dashboard');
+         } else {
+             alert('something is wrong. please try after sometime')
          }
 
 
